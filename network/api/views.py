@@ -1,10 +1,10 @@
 from blogs.models import Follow, Post
 from django.db.models import F
 from django.shortcuts import get_list_or_404, get_object_or_404
-from rest_framework import filters, mixins, permissions, viewsets
+from rest_framework import filters, mixins, pagination, permissions, viewsets
 from users.models import CustomUser
 
-from . import serializers
+from . import constants, serializers
 
 
 class PostViewSet(viewsets.ModelViewSet):
@@ -28,7 +28,10 @@ class FeedViewSet(
     viewsets.GenericViewSet
 ):
     serializer_class = serializers.PostSerializer
+    pagination_class = pagination.PageNumberPagination
 
     def get_queryset(self):
         user = get_object_or_404(CustomUser, pk=self.kwargs.get('user_id'))
-        return Post.objects.filter(blog__followers__user=user)
+        return Post.objects.filter(
+            blog__followers__user=user
+        )[:constants.FEED_LIMITS]
