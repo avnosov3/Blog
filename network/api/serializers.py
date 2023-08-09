@@ -1,4 +1,4 @@
-from blogs.models import Follow, Post
+from blogs.models import Follow, Post, ReadStatus
 from rest_framework import serializers
 from users.models import CustomUser
 
@@ -9,7 +9,7 @@ class PostSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = Post
-        fields = ('title', 'text', 'pub_date', 'blog')
+        fields = ('pk', 'title', 'text', 'pub_date', 'blog')
 
 
 class FollowSerializer(serializers.ModelSerializer):
@@ -37,3 +37,10 @@ class FollowSerializer(serializers.ModelSerializer):
                 constants.SUBSCRIBE_SELF
             )
         return value
+
+
+class ReadStatusSerializer(serializers.ModelSerializer):
+
+    class Meta:
+        model = ReadStatus
+        fields = ('status',)

@@ -9,6 +9,10 @@ router_v1.register(r'follow', views.FollowViewSet, basename='follow')
 router_v1.register(
     r'feed/(?P<user_id>\d+)', views.FeedViewSet, basename='feed'
 )
+router_v1.register(
+    r'feed/(?P<user_id>\d+)/status/(?P<post_id>\d+)', views.ReadStatusViewSet, basename='read_status'
+)
+
 
 urlpatterns = [
     path('v1/', include(router_v1.urls)),

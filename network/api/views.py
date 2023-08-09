@@ -1,4 +1,4 @@
-from blogs.models import Follow, Post
+from blogs.models import Follow, Post, ReadStatus
 from django.db.models import F
 from django.shortcuts import get_list_or_404, get_object_or_404
 from rest_framework import filters, mixins, pagination, permissions, viewsets
@@ -35,3 +35,18 @@ class FeedViewSet(
         return Post.objects.filter(
             blog__followers__user=user
         )[:constants.FEED_LIMITS]
+
+
+class ReadStatusViewSet(
+    mixins.CreateModelMixin,
+    viewsets.GenericViewSet
+):
+    queryset = ReadStatus.objects.all()
+    serializer_class = serializers.ReadStatusSerializer
+
+    def perform_create(self, serializer):
+        post = get_object_or_404(Post, pk=self.kwargs.get('post_id'))
+        user = get_object_or_404(CustomUser, pk=self.kwargs.get('user_id'))
+        read_status, _ = ReadStatus.objects.get_or_create(reader=user, post=post)
+        read_status.status = serializer.validated_data['status']
+        read_status.save()
