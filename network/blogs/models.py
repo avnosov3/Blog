@@ -35,8 +35,7 @@ class Post(models.Model):
     )
     blog = models.ForeignKey(
         to=Blog,
-        on_delete=models.SET_NULL,
-        null=True,
+        on_delete=models.CASCADE,
         related_name='posts',
         verbose_name='Блог',
         help_text='Блог, к которому относится пост'
