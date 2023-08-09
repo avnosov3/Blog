@@ -85,10 +85,10 @@ class Follow(models.Model):
         constraints = [
             models.UniqueConstraint(
                 name='Проверка повторной подписки',
-                fields=['user', 'following'],
+                fields=['user', 'blog'],
             ),
             models.CheckConstraint(
                 name='Проверка самоподписки',
-                check=~models.Q(user=models.F('following')),
+                check=~models.Q(user=models.F('blog')),
             ),
         ]
