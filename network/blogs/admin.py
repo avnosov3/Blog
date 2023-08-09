@@ -10,6 +10,6 @@ class BlogAdmin(admin.ModelAdmin):
 
 @admin.register(Post)
 class PostAdmin(admin.ModelAdmin):
-    list_display = ('pk', 'title', 'text', 'pub_date', 'blog')
-    list_filter = ('pub_date',)
+    list_display = ('pk', 'title', 'pub_date', 'blog')
+    list_filter = ('pub_date', 'blog')
     empty_value_display = '-пусто-'
