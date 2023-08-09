@@ -22,10 +22,10 @@ class CustomUser(AbstractUser):
         verbose_name_plural = 'Пользователи'
 
     def save(self, *args, **kwargs):
-        if not self.id:
-            self.password = make_password(self.password)
-            super().save(*args, **kwargs)
+        is_new_user = not self.pk
+        super().save(*args, **kwargs)
+
+        if is_new_user and not self.is_superuser:
             from blogs.models import Blog
-            Blog.objects.create(author=self)
-        else:
-            super().save(*args, **kwargs)
+            if not Blog.objects.filter(author=self).exists():
+                Blog.objects.create(author=self)
