@@ -69,13 +69,13 @@ class Follow(models.Model):
     user = models.ForeignKey(
         CustomUser,
         on_delete=models.CASCADE,
-        related_name='follower',
+        related_name='subscriptions',
         verbose_name='Подписчик',
     )
     blog = models.ForeignKey(
         Blog,
         on_delete=models.CASCADE,
-        related_name='following',
+        related_name='followers',
         verbose_name='Блог'
     )
 
@@ -86,9 +86,5 @@ class Follow(models.Model):
             models.UniqueConstraint(
                 name='Проверка повторной подписки',
                 fields=['user', 'blog'],
-            ),
-            models.CheckConstraint(
-                name='Проверка самоподписки',
-                check=~models.Q(user=models.F('blog')),
             ),
         ]
