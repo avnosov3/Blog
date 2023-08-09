@@ -5,6 +5,7 @@ from .models import Blog, Post
 
 @admin.register(Blog)
 class BlogAdmin(admin.ModelAdmin):
+    list_display = ('pk', 'author')
     empty_value_display = '-пусто-'
 
 
