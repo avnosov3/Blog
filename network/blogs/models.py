@@ -70,13 +70,13 @@ class Follow(models.Model):
         CustomUser,
         on_delete=models.CASCADE,
         related_name='follower',
-        verbose_name='Подписки автора',
+        verbose_name='Подписчик',
     )
     blog = models.ForeignKey(
         Blog,
         on_delete=models.CASCADE,
         related_name='following',
-        verbose_name='Подписки на блог'
+        verbose_name='Блог'
     )
 
     class Meta:
