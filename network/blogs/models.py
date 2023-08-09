@@ -14,6 +14,10 @@ class Blog(models.Model):
         help_text='Введите автора блога',
     )
 
+    class Meta:
+        verbose_name = 'Блог'
+        verbose_name_plural = 'Блоги'
+
     def __str__(self):
         return f'Автор блога "{self.author.get_username()}"'
 
@@ -41,6 +45,10 @@ class Post(models.Model):
         help_text='Блог, к которому относится пост'
     )
 
+    class Meta:
+        verbose_name = 'Пост'
+        verbose_name_plural = 'Посты'
+
     OUT = (
         '"{title}" '
         '"{text:.15}" '
@@ -55,3 +63,32 @@ class Post(models.Model):
             pub_date=self.pub_date,
             blog=self.blog.author
         )
+
+
+class Follow(models.Model):
+    user = models.ForeignKey(
+        CustomUser,
+        on_delete=models.CASCADE,
+        related_name='follower',
+        verbose_name='Подписки автора',
+    )
+    blog = models.ForeignKey(
+        Blog,
+        on_delete=models.CASCADE,
+        related_name='following',
+        verbose_name='Подписки на блог'
+    )
+
+    class Meta:
+        verbose_name = 'Подписка'
+        verbose_name_plural = 'Подписки'
+        constraints = [
+            models.UniqueConstraint(
+                name='Проверка повторной подписки',
+                fields=['user', 'following'],
+            ),
+            models.CheckConstraint(
+                name='Проверка самоподписки',
+                check=~models.Q(user=models.F('following')),
+            ),
+        ]
