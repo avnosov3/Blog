@@ -21,3 +21,9 @@ class FollowAdmin(admin.ModelAdmin):
     list_display = ('pk', 'user', 'blog')
     list_filter = ('user', 'blog')
     empty_value_display = '-пусто-'
+
+
+@admin.register(models.ReadStatus)
+class ReadStatusAdmin(admin.ModelAdmin):
+    list_display = ('pk', 'reader', 'post', 'status')
+    empty_value_display = '-пусто-'

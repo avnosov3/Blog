@@ -92,3 +92,31 @@ class Follow(models.Model):
 
     def __str__(self):
         return f'"{self.user}" подписан на {self.blog}'
+
+
+class ReadStatus(models.Model):
+    reader = models.ForeignKey(
+        CustomUser,
+        on_delete=models.CASCADE,
+        related_name='statuses',
+        verbose_name='Читатель',
+    )
+    post = models.ForeignKey(
+        Post,
+        on_delete=models.CASCADE,
+        related_name='statuses',
+        verbose_name='Пост',
+    )
+    status = models.BooleanField(
+        verbose_name='Статус прочтения поста'
+    )
+
+    class Meta:
+        verbose_name = 'Статсу Прочтения'
+        verbose_name_plural = 'Статусы Прочтения'
+        constraints = [
+            models.UniqueConstraint(
+                name='Проверка повторного прочтения',
+                fields=['reader', 'post'],
+            ),
+        ]
