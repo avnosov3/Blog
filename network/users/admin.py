@@ -5,7 +5,7 @@ from .models import CustomUser
 
 @admin.register(CustomUser)
 class CustomUserAdmin(admin.ModelAdmin):
-    list_display = ('username', 'password', 'is_superuser')
+    list_display = ('pk', 'username', 'password', 'is_superuser')
     empty_value_display = '-пусто-'
 
     def save_model(self, request, obj, form, change):
