@@ -17,6 +17,10 @@ class CustomUser(AbstractUser):
 
     objects = CustomUserManager()
 
+    class Meta:
+        verbose_name = 'Пользователь'
+        verbose_name_plural = 'Пользователи'
+
     def save(self, *args, **kwargs):
         if not self.id:
             self.password = make_password(self.password)
