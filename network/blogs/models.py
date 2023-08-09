@@ -108,6 +108,7 @@ class ReadStatus(models.Model):
         verbose_name='Пост',
     )
     status = models.BooleanField(
+        null=True,
         verbose_name='Статус прочтения поста'
     )
 
