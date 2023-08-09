@@ -88,3 +88,6 @@ class Follow(models.Model):
                 fields=['user', 'blog'],
             ),
         ]
+
+    def __str__(self):
+        return f'"{self.user}" подписан на {self.blog}'
