@@ -115,9 +115,3 @@ class ReadStatus(models.Model):
     class Meta:
         verbose_name = 'Статсу Прочтения'
         verbose_name_plural = 'Статусы Прочтения'
-        constraints = [
-            models.UniqueConstraint(
-                name='Проверка повторного прочтения',
-                fields=['reader', 'post'],
-            ),
-        ]
