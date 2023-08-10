@@ -29,7 +29,7 @@
 git clone git@github.com:avnosov3/Blog.git
 ```
 ```
-cd Blog
+cd Blog/
 ```
 2. Создать файл .env
 
@@ -47,6 +47,9 @@ REDIS_HOST=redis
 ```
 
 3. Запустить docker compose
+```
+cd infra/
+```
 ```
 docker compose up -d
 ```
