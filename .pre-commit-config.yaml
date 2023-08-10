@@ -17,3 +17,10 @@ repos:
       name: isort
       exclude: (migrations)
       args: [--profile, black, --known-local-folder, users, api, blogs]
+
+- repo: https://github.com/pycqa/flake8
+  rev: 4.0.1
+  hooks:
+    - id: flake8
+      args: [--max-line-length=120]
+      exclude: (migrations|settings/|tests)
