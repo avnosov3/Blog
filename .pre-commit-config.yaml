@@ -16,4 +16,4 @@ repos:
     - id: isort
       name: isort
       exclude: (migrations)
-      args: [--profile, black]
+      args: [--profile, black, -known-local-folder, users, api, blogs]
