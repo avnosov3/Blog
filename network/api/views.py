@@ -1,13 +1,10 @@
 from blogs.models import Follow, Post, ReadStatus
 from django.core.cache import cache
-from django.db.models import F
-from django.shortcuts import get_list_or_404, get_object_or_404
-from rest_framework import filters, mixins, pagination, permissions, viewsets
+from django.shortcuts import get_object_or_404
+from rest_framework import mixins, pagination, viewsets
 from users.models import CustomUser
 
-from network import constants
-
-from . import serializers
+from . import constants, serializers
 
 
 class PostViewSet(viewsets.ModelViewSet):
@@ -49,12 +46,6 @@ class FeedViewSet(
     serializer_class = serializers.PostSerializer
     pagination_class = pagination.PageNumberPagination
 
-    # def get_queryset(self):
-    #     user = get_object_or_404(CustomUser, pk=self.kwargs.get('user_id'))
-    #     return Post.objects.filter(
-    #         blog__followers__user=user
-    #     )[:constants.FEED_LIMITS]
-
     def get_queryset(self):
         user = get_object_or_404(CustomUser, pk=self.kwargs.get('user_id'))
         cache_key = constants.FEED_CACHE_PATH.format(user.id)
@@ -78,6 +69,8 @@ class ReadStatusViewSet(
     def perform_create(self, serializer):
         post = get_object_or_404(Post, pk=self.kwargs.get('post_id'))
         user = get_object_or_404(CustomUser, pk=self.kwargs.get('user_id'))
-        read_status, _ = ReadStatus.objects.get_or_create(reader=user, post=post)
+        read_status, _ = ReadStatus.objects.get_or_create(
+            reader=user, post=post
+        )
         read_status.status = serializer.validated_data['status']
         read_status.save()

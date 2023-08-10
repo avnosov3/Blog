@@ -10,7 +10,9 @@ router_v1.register(
     r'feed/(?P<user_id>\d+)', views.FeedViewSet, basename='feed'
 )
 router_v1.register(
-    r'feed/(?P<user_id>\d+)/status/(?P<post_id>\d+)', views.ReadStatusViewSet, basename='read_status'
+    r'feed/(?P<user_id>\d+)/status/(?P<post_id>\d+)',
+    views.ReadStatusViewSet,
+    basename='read_status'
 )
 
 
