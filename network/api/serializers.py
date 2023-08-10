@@ -2,7 +2,7 @@ from blogs.models import Follow, Post, ReadStatus
 from rest_framework import serializers
 from users.models import CustomUser
 
-from . import constants
+from network import constants
 
 
 class PostSerializer(serializers.ModelSerializer):

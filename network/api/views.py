@@ -5,7 +5,9 @@ from django.shortcuts import get_list_or_404, get_object_or_404
 from rest_framework import filters, mixins, pagination, permissions, viewsets
 from users.models import CustomUser
 
-from . import constants, serializers
+from network import constants
+
+from . import serializers
 
 
 class PostViewSet(viewsets.ModelViewSet):
