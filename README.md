@@ -26,7 +26,9 @@
 
 1. Клонировать репозиторий и перейти в него в командной строке
 ```
-git@github.com:avnosov3/Blog.git
+git clone git@github.com:avnosov3/Blog.git
+```
+```
 cd Blog
 ```
 2. Создать файл .env
