@@ -68,5 +68,6 @@ docker compose exec app poetry run python manage.py fillbase 10
 
 После запуска появится доступ к:
 * [Документации](http://127.0.0.1/redoc/)
+* [Админка django](http://127.0.0.1/admin/)
 * [Админке postgres](http://127.0.0.1/adminer/)
 * [Flower](http://127.0.0.1:5555/)
