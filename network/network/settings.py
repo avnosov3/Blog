@@ -167,7 +167,7 @@ CELERY_TIMEZONE = 'UTC'
 CELERY_BEAT_SCHEDULE = {
     'send_daily_feed_to_all_users': {
         'task': 'blogs.tasks.send_daily_feed_to_all_users',
-        'schedule': timedelta(days=os.getenv('EMAIL_SCHEDULE', 1)),
+        'schedule': timedelta(days=1),
     },
 }
 

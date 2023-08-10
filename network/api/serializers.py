@@ -1,8 +1,7 @@
 from blogs.models import Follow, Post, ReadStatus
 from rest_framework import serializers
 
-from network import constants
-
+from . import constants
 from users.models import CustomUser
 
 
