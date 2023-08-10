@@ -15,6 +15,7 @@ services:
       dockerfile: Dockerfile
     command: >
       sh -c "
+        poetry run python manage.py collectstatic --no-input &&
         poetry run python manage.py migrate &&
         poetry run gunicorn network.wsgi --bind 0:8888
       "
