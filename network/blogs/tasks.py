@@ -3,9 +3,9 @@ from blogs.models import Post
 from celery import shared_task
 from django.core.cache import cache
 from django.core.mail import send_mail
-from users.models import CustomUser
 
 from .constatns import EMAIL_FEED_LIMITS
+from users.models import CustomUser
 
 
 @shared_task

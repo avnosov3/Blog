@@ -2,9 +2,9 @@ from blogs.models import Follow, Post, ReadStatus
 from django.core.cache import cache
 from django.shortcuts import get_object_or_404
 from rest_framework import mixins, pagination, viewsets
-from users.models import CustomUser
 
 from . import constants, serializers
+from users.models import CustomUser
 
 
 class PostViewSet(viewsets.ModelViewSet):

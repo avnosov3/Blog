@@ -1,7 +1,7 @@
 from django.db import models
-from users.models import CustomUser
 
 from . import constatns
+from users.models import CustomUser
 
 
 class Blog(models.Model):
