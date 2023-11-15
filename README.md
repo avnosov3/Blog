@@ -151,7 +151,7 @@ command fillbase <number of users to be created>
 docker compose exec app poetry run python manage.py fillbase 10
 ```
 
-После запуска появится доступ к:
+Once launched, there will be access to:
 * [Documentation](http://127.0.0.1/redoc/)
 * [Admin-panel django](http://127.0.0.1/admin/)
 * [Admin-panel postgres](http://127.0.0.1/adminer/)
